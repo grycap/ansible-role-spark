@@ -1,0 +1,19 @@
+galaxy_info:
+  author: amcaar@i3m.upv.es
+  description: Install apache spark
+  company: GRyCAP UPV
+  license: Apache
+  min_ansible_version: 2.0
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  - name: EL
+    versions:
+    - 7
+  galaxy_tags: 
+   - spark
+
+dependencies: []
+
+
