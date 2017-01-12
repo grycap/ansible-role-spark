@@ -1,0 +1,3 @@
+---
+# Spark version to install
+spark_version: 1.6.3
