@@ -1,6 +1,12 @@
 ---
-- name: Download Spark code and decompress it
-  unarchive: src=http://apache.rediris.es/spark/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop2.6.tgz dest=/opt/ copy=no creates=/opt/spark-{{spark_version}}-bin-hadoop2.6 copy=no
+- get_url: url={{ spark_mirrors|random }}//spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop2.6.tgz dest=/opt/spark-{{spark_version}}-bin-hadoop2.6.tgz force=no
+  register: result
+  until: result|success
+  retries: 5
+  delay: 2
+
+- name: Decompress it
+  unarchive: src=/opt/spark-{{spark_version}}-bin-hadoop2.6.tgz dest=/opt/ copy=no creates=/opt/spark-{{spark_version}}-bin-hadoop2.6 copy=no
 
 - name: Create symbolic link to spark
   file: src=/opt/spark-{{spark_version}}-bin-hadoop2.6 dest=/opt/spark state=link

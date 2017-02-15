@@ -1,3 +1,6 @@
 ---
 # Spark version to install
 spark_version: 1.6.3
+# List of servers to download the spark code
+spark_mirrors: [ "http://apache.rediris.es/spark/" ]
+
