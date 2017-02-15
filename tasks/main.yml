@@ -1,5 +1,5 @@
 ---
-- get_url: url={{ spark_mirrors|random }}//spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop2.6.tgz dest=/opt/spark-{{spark_version}}-bin-hadoop2.6.tgz force=no
+- get_url: url={{ spark_mirrors|random }}/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop2.6.tgz dest=/opt/spark-{{spark_version}}-bin-hadoop2.6.tgz force=no
   register: result
   until: result|success
   retries: 5
