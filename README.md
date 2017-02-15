@@ -10,13 +10,13 @@ Example Playbook
 ----------------
 ```
   - hosts: server
-  roles:
-  - { role: 'grycap.spark'}
+    roles:
+     - { role: 'grycap.spark'}
 ```
 ```
   - hosts: client
-  roles:
-  - { role: 'grycap.spark'}
+    roles:
+     - { role: 'grycap.spark'}
 ```
 
 Contributing to the role
