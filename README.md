@@ -6,17 +6,27 @@ Apache Spark Role
 
 Ansible role to install Apache Spark (http://spark.apache.org/). A recipe for EC3 is also available in the EC3 repo.
 
+Role Variables
+--------------
+
+The following variables can be passed to this role:
+
+	# The version of Spark (default value: 1.6.3)
+	spark_version: 2.2.1
+
+
+
 Example Playbook
 ----------------
 ```
   - hosts: server
     roles:
-     - { role: 'grycap.spark'}
+     - { role: 'grycap.spark', spark_version: '2.2.1'}
 ```
 ```
   - hosts: client
     roles:
-     - { role: 'grycap.spark'}
+     - { role: 'grycap.spark', spark_version: '2.2.1'}
 ```
 
 Contributing to the role
