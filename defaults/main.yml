@@ -3,4 +3,11 @@
 spark_version: 1.6.3
 # List of servers to download the spark code
 spark_mirrors: [ "http://apache.rediris.es/spark", "http://apache.uvigo.es/spark", "http://www-eu.apache.org/dist/spark" ]
+# Frontend private IP
+front_private_ip: ""
+# Node type
+spark_type_of_node: "front"
+# Mesos variables
+principal: 'ubuntu'
+secret: 'ubuntusecret'
 

@@ -1,0 +1,33 @@
+---
+- name: Set Spark tgz name
+  set_fact: 
+    spark: "spark-{{spark_version}}-bin-hadoop2.6"
+
+- name: Get Spark tgz
+  get_url: 
+    url: "{{ spark_mirrors|random }}/spark-{{spark_version}}/{{spark}}.tgz"
+    dest: "/opt/{{spark}}.tgz"
+    force: no
+  register: result
+  until: result|success
+  retries: 5
+  delay: 2
+
+- name: Decompress Spark tgz
+  unarchive: 
+    src: "/opt/{{spark}}.tgz"
+    dest: /opt/
+    copy: no
+    creates: "/opt/{{spark}}"
+
+- name: Create symbolic link to spark
+  file: 
+    src: "/opt/{{spark}}"
+    dest: /opt/spark
+    state: link
+
+- name: Update PATH environment variable
+  copy: 
+    dest: /etc/profile.d/spark.sh
+    src: spark.sh
+    mode: 0644

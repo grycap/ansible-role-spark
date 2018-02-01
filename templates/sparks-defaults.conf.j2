@@ -1,0 +1,7 @@
+spark.master mesos://{{ front_private_ip }}:5050
+spark.serializer org.apache.spark.serializer.KryoSerializer
+spark.mesos.principal {{principal}}
+spark.mesos.secret {{secret}}
+spark.eventLog.enabled true
+spark.history.fs.logDirectory hdfs://{{ front_private_ip }}:9000/log/history
+spark.eventLog.dir hdfs://{{ front_private_ip }}:9000/log
