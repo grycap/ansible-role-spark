@@ -13,7 +13,15 @@ The following variables can be passed to this role:
 
 	# The version of Spark (default value: 1.6.3)
 	spark_version: 2.2.1
-
+	# List of servers to download the spark code
+	spark_mirrors: [ "http://apache.rediris.es/spark", "http://apache.uvigo.es/spark", "http://www-eu.apache.org/dist/spark" ]
+	# Frontend private IP
+	front_private_ip: ""
+	# Node type
+	spark_type_of_node: "front"
+	# Mesos variables
+	principal: 'ubuntu'
+	secret: 'ubuntusecret'
 
 
 Example Playbook
@@ -21,12 +29,12 @@ Example Playbook
 ```
   - hosts: server
     roles:
-     - { role: 'grycap.spark', spark_version: '2.2.1'}
+     - { role: 'grycap.spark', spark_version: '2.2.1', spark_type_of_node: 'front', front_private_ip: '192.168.xxx.xxx'}
 ```
 ```
   - hosts: client
     roles:
-     - { role: 'grycap.spark', spark_version: '2.2.1'}
+     - { role: 'grycap.spark', spark_version: '2.2.1', spark_type_of_node: "wn"}
 ```
 
 Contributing to the role
