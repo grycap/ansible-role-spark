@@ -10,4 +10,6 @@ spark_type_of_node: "front"
 # Mesos variables
 principal: 'ubuntu'
 secret: 'ubuntusecret'
-
+# Spark configuration variables
+spark_history_fs_logDirectory: "hdfs://{{ front_private_ip }}:9000/log/history"
+spark_eventLog_dir: "hdfs://{{ front_private_ip }}:9000/log"
