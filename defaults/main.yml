@@ -2,5 +2,5 @@
 # Spark version to install
 spark_version: 1.6.3
 # List of servers to download the spark code
-spark_mirrors: [ "http://apache.rediris.es/spark", "http://apache.uvigo.es/spark", "http://www-eu.apache.org/dist/spark" ]
+spark_mirrors: [ "https://archive.apache.org/dist/spark", "http://apache.rediris.es/spark", "http://apache.uvigo.es/spark", "http://www-eu.apache.org/dist/spark" ]
 
