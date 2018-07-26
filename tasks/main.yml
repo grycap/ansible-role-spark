@@ -1,15 +1,15 @@
 ---
-- get_url: url={{ spark_mirrors|random }}/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop2.6.tgz dest=/opt/spark-{{spark_version}}-bin-hadoop2.6.tgz force=no
+- get_url: url={{ spark_mirrors|random }}/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop2.7.tgz dest=/opt/spark-{{spark_version}}-bin-hadoop2.7.tgz force=no
   register: result
   until: result|success
   retries: 5
   delay: 2
 
 - name: Decompress it
-  unarchive: src=/opt/spark-{{spark_version}}-bin-hadoop2.6.tgz dest=/opt/ copy=no creates=/opt/spark-{{spark_version}}-bin-hadoop2.6 copy=no
+  unarchive: src=/opt/spark-{{spark_version}}-bin-hadoop2.7.tgz dest=/opt/ copy=no creates=/opt/spark-{{spark_version}}-bin-hadoop2.7 copy=no
 
 - name: Create symbolic link to spark
-  file: src=/opt/spark-{{spark_version}}-bin-hadoop2.6 dest=/opt/spark state=link
+  file: src=/opt/spark-{{spark_version}}-bin-hadoop2.7 dest=/opt/spark state=link
 
 - name: update PATH environment variable
   copy: dest=/etc/profile.d/spark.sh content="export PATH=$PATH:/opt/spark/bin\nexport SPARK_HOME=/opt/spark"
