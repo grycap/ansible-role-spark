@@ -11,8 +11,8 @@ Role Variables
 
 The following variables can be passed to this role:
 
-	# The version of Spark (default value: 1.6.3)
-	spark_version: 2.2.1
+	# The version of Spark (default value: 3.0.1)
+	spark_version: 3.0.1
 
 
 
@@ -21,12 +21,12 @@ Example Playbook
 ```
   - hosts: server
     roles:
-     - { role: 'grycap.spark', spark_version: '2.2.1'}
+     - { role: 'grycap.spark', spark_version: '3.0.0'}
 ```
 ```
   - hosts: client
     roles:
-     - { role: 'grycap.spark', spark_version: '2.2.1'}
+     - { role: 'grycap.spark', spark_version: '3.0.0'}
 ```
 
 Contributing to the role
