@@ -1,7 +1,7 @@
 ---
 - get_url: url={{ spark_mirrors|random }}/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop3.2.tgz dest=/opt/spark-{{spark_version}}-bin-hadoop3.2.tgz force=no
   register: result
-  until: result|success
+  until: result is success
   retries: 5
   delay: 2
 
