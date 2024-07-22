@@ -10,7 +10,8 @@
 
 - name: Decompress it
   unarchive:
-    src: /opt/spark-{{spark_version}}-bin-hadoop3.tgz dest=/opt/
+    src: /opt/spark-{{spark_version}}-bin-hadoop3.tgz
+    dest: /opt/
     creates: /opt/spark-{{spark_version}}-bin-hadoop3
     remote_src: yes
 
