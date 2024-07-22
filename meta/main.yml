@@ -1,4 +1,6 @@
 galaxy_info:
+  role_name: spark
+  namespace: grycap
   author: amcaar@i3m.upv.es
   description: Install apache spark
   company: GRyCAP UPV

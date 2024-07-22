@@ -1,6 +1,6 @@
 ---
 # Spark version to install
-spark_version: 3.0.2
+spark_version: 3.5.1
 # List of servers to download the spark code
 spark_mirrors: [ "https://archive.apache.org/dist/spark", "http://apache.rediris.es/spark", "http://apache.uvigo.es/spark", "http://www-eu.apache.org/dist/spark" ]
 
