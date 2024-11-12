@@ -1,7 +1,15 @@
 ---
+- set_fact:
+    hadoop_version: "3"
+- set_fact:
+    hadoop_version: "3.2"
+  when: spark_version is version('3.3', '<')
+- set_fact:
+    hadoop_version: "2.7"
+  when: spark_version is version('3.0', '<')
 - get_url:
-    url: "{{ spark_mirrors|random }}/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop3.tgz"
-    dest: "/opt/spark-{{spark_version}}-bin-hadoop3.tgz"
+    url: "{{ spark_mirrors|random }}/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}.tgz"
+    dest: "/opt/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}.tgz"
     force: false
   register: result
   until: result is success
@@ -10,14 +18,14 @@
 
 - name: Decompress it
   unarchive:
-    src: /opt/spark-{{spark_version}}-bin-hadoop3.tgz
+    src: /opt/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}.tgz
     dest: /opt/
-    creates: /opt/spark-{{spark_version}}-bin-hadoop3
+    creates: /opt/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}
     remote_src: yes
 
 - name: Create symbolic link to spark
   file:
-    src: /opt/spark-{{spark_version}}-bin-hadoop3
+    src: /opt/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}
     dest: /opt/spark
     state: link
 
