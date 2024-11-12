@@ -1,11 +1,11 @@
 ---
 - set_fact:
-    hadoop_version: 3
+    hadoop_version: "3"
 - set_fact:
-    hadoop_version: 3.2
+    hadoop_version: "3.2"
   when: spark_mirrors is version('3.3', '<')
 - set_fact:
-    hadoop_version: 2.7
+    hadoop_version: "2.7"
   when: spark_mirrors is version('3.0', '<')
 - get_url:
     url: "{{ spark_mirrors|random }}/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}.tgz"
