@@ -1,5 +1,15 @@
 ---
 - set_fact:
+    spark_files: '{{ lookup("url", "http://apache.rediris.es/spark/", split_lines=False) | regex_findall("spark-(\d+\.\d+\.\d+)/") }}'
+  when: spark_version == 'latest'
+- set_fact:
+    spark_version: "{{ spark_files | sort | last }}"
+  when: spark_version == 'latest'
+
+- debug:
+    msg: "Installing Spark version {{ spark_version }}"
+
+- set_fact:
     hadoop_version: "3"
 - set_fact:
     hadoop_version: "3.2"
@@ -7,6 +17,7 @@
 - set_fact:
     hadoop_version: "2.7"
   when: spark_version is version('3.0', '<')
+
 - get_url:
     url: "{{ spark_mirrors|random }}/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}.tgz"
     dest: "/opt/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}.tgz"
