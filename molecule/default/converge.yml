@@ -7,4 +7,4 @@
 
     - name: "Include grycap.spark role"
       include_role:
-        name: "ansible-role-spark"
+        name: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
