@@ -18,7 +18,8 @@
     hadoop_version: "2.7"
   when: spark_version is version('3.0', '<')
 
-- get_url:
+- name: Download Spark binary
+  get_url:
     url: "{{ spark_mirrors|random }}/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}.tgz"
     dest: "/opt/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}.tgz"
     force: false
@@ -26,6 +27,17 @@
   until: result is success
   retries: 5
   delay: 2
+
+- name: Download Spark binary from fallback mirror for old versions
+  get_url:
+    url: "https://archive.apache.org/dist/spark/spark-{{spark_version}}/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}.tgz"
+    dest: "/opt/spark-{{spark_version}}-bin-hadoop{{hadoop_version}}.tgz"
+    force: false
+  register: result_fallback
+  until: result_fallback is success
+  retries: 2
+  delay: 2
+  when: result is failed
 
 - name: Decompress it
   unarchive:
